@@ -15,12 +15,13 @@ const resendCode = require('../../common/Auth_operation/resendCode');
 const restPasswordSchema = require('../../common/validationsModel/restPassword');
 const changePasswordSchema = require('../../common/validationsModel/changePassword');
 const changePassword = require('./controllers/auth/changePassword');
+const playerShema = require('./models/playerSchema');
 const playerRouter = express.Router();
 
 
 
 playerRouter.route('/register')
-    .post(multerConfig().fields({ name: 'logo', maxCount: 1 }), validatorRegister(), register);
+    .post(multerConfig().fields([{ name: 'logo', maxCount: 1 }]), validateRequest(playerShema), register);
 
 playerRouter.route('/login')
     .post(multerConfig().array(), validateRequest(loginSchema), login);

@@ -14,9 +14,6 @@ const register = wrap(
         if (isPlayerExist) {
             return next(new ApiError("Email is already registered", 400));
         }
-
-
-
         const player = new Player({
             ...value
         });

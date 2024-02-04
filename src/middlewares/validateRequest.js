@@ -5,8 +5,9 @@ const errorValidationMessages = require('./../utils/errorValidationMessages')
 
 const validateRequest = (schema) => {
     return (req, res, next) => {
+        const data = { ...req.body, ...req.files }
 
-        const { error, value } = schema.validate(req.body, { abortEarly: false });
+        const { error, value } = schema.validate(data, { abortEarly: false });
 
         if (error) {
             const errorResponse = handleFieldErrors(error, errorValidationMessages?.[req.ln]);

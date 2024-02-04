@@ -32,8 +32,8 @@ const questionSchema = new mongoose.Schema({
         required: true,
     },
     image: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Image',
+        type: String,
+        default: ''
     },
     name: {
         type: String,

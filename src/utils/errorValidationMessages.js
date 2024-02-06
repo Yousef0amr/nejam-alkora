@@ -1,31 +1,38 @@
 const en = [
     { fieldName: 'phone', errorMessage: 'Invalid phone number format' },
+    { fieldName: 'logo', errorMessage: 'Only one logo file is allowed.' },
     { fieldName: 'email', errorMessage: 'Invalid email address format' },
     { fieldName: 'name', errorMessage: 'Name must be at least 3 characters long' },
-    { fieldName: 'password', errorMessage: 'Password are required' },
-    { fieldName: 'token', errorMessage: 'Token required' },
-    { fieldName: 'otpSecret', errorMessage: 'OTP Secret required' },
+    { fieldName: 'password', errorMessage: 'Password is required' },
+    { fieldName: 'token', errorMessage: 'Token is required' },
+    { fieldName: 'otpSecret', errorMessage: 'OTP Secret is required' },
     { fieldName: 'newPassword', errorMessage: 'Password must be at least 8 characters long' },
     { fieldName: 'confirmPassword', errorMessage: 'Password does not match' },
-    // Add the following for personalInfo
-    { fieldName: 'personalInfo.name', errorMessage: 'Name must be at least 3 characters long and is required' },
-    { fieldName: 'personalInfo.phone', errorMessage: 'Phone must be between 10 and 11 characters long and is required' },
-    { fieldName: 'personalInfo.email', errorMessage: 'Email must be a valid email address and is required' },
-    { fieldName: 'personalInfo.password', errorMessage: 'Password must be at least 8 characters long and is required' },
-    // Add the following for businessInfo
-    { fieldName: 'businessInfo.logo', errorMessage: 'Logo is required' },
-    { fieldName: 'businessInfo.name', errorMessage: 'Business name must be at least 3 characters long and is required' },
-    { fieldName: 'businessInfo.deliveryNumber', errorMessage: 'Delivery number must be between 10 and 11 characters long and is required' },
-    { fieldName: 'businessInfo.location', errorMessage: 'Location is required' },
-    { fieldName: 'businessInfo.description', errorMessage: 'Description is required' },
-    { fieldName: 'businessInfo.categories', errorMessage: 'At least one category is required' },
-    { fieldName: 'businessInfo.frontId', errorMessage: 'Front ID is required' },
-    { fieldName: 'businessInfo.backId', errorMessage: 'Back ID is required' },
-    { fieldName: 'businessInfo.healthCertificate', errorMessage: 'Health certificate is required' },
+    { fieldName: 'image', errorMessage: 'Only one image file is allowed.' },
+    { fieldName: 'name', errorMessage: 'Name is required.' },
+    {
+        fieldName: 'answers',
+        errorMessage: 'Answers must be an array.',
+        subfields: {
+            title: 'Answer title is required.',
+            rate: 'Answer rate must be a number.'
+        }
+    },
+    { fieldName: 'title', errorMessage: 'Title is required.' },
+    { fieldName: 'duration', errorMessage: 'Duration must be a number.' },
+    { fieldName: 'description', errorMessage: 'Description is required.' },
+    { fieldName: 'position', errorMessage: 'Position is required.' },
+    { fieldName: 'gender', errorMessage: 'Gender must be a string.' },
+    { fieldName: 'birthDate', errorMessage: 'Birth date must be a valid date.' },
+    { fieldName: 'primary_position', errorMessage: 'Primary position must be a string.' },
+    { fieldName: 'secondary_position', errorMessage: 'Secondary position must be a string.' },
+    { fieldName: 'skills', errorMessage: 'Skills must be an array and should contain at least one item.' },
+
 ];
 
 const ar = [
     { fieldName: 'phone', errorMessage: 'صيغة رقم الهاتف غير صالحة' },
+    { fieldName: 'logo', errorMessage: 'صيغة الملف المسموح بها هي شعار واحد فقط.' },
     { fieldName: 'email', errorMessage: 'صيغة البريد الإلكتروني غير صالحة' },
     { fieldName: 'name', errorMessage: 'يجب أن يكون الاسم على الأقل 3 أحرف' },
     { fieldName: 'password', errorMessage: ' كلمة المرور مطلوبة' },
@@ -33,21 +40,26 @@ const ar = [
     { fieldName: 'otpSecret', errorMessage: 'مطلوب OTPSecret' },
     { fieldName: 'newPassword', errorMessage: 'يجب أن تكون كلمة المرور على الأقل 8 أحرف' },
     { fieldName: 'confirmPassword', errorMessage: 'كلمة المرور غير متطابقة' },
-    // Add the following for personalInfo
-    { fieldName: 'personalInfo.name', errorMessage: 'يجب أن يكون الاسم على الأقل 3 أحرف ومطلوب' },
-    { fieldName: 'personalInfo.phone', errorMessage: 'يجب أن يكون رقم الهاتف بين 10 و 11 حرفًا ومطلوب' },
-    { fieldName: 'personalInfo.email', errorMessage: 'يجب أن يكون البريد الإلكتروني عنوان بريد إلكتروني صالح ومطلوب' },
-    { fieldName: 'personalInfo.password', errorMessage: 'يجب أن تكون كلمة المرور على الأقل 8 أحرف ومطلوبة' },
-    // Add the following for businessInfo
-    { fieldName: 'businessInfo.logo', errorMessage: 'مطلوب شعار' },
-    { fieldName: 'businessInfo.name', errorMessage: 'يجب أن يكون اسم العمل على الأقل 3 أحرف ومطلوب' },
-    { fieldName: 'businessInfo.deliveryNumber', errorMessage: 'يجب أن يكون رقم التسليم بين 10 و 11 حرفًا ومطلوب' },
-    { fieldName: 'businessInfo.location', errorMessage: 'الموقع مطلوب' },
-    { fieldName: 'businessInfo.description', errorMessage: 'الوصف مطلوب' },
-    { fieldName: 'businessInfo.categories', errorMessage: 'مطلوبة على الأقل فئة واحدة' },
-    { fieldName: 'businessInfo.frontId', errorMessage: 'مطلوب هوية الواجهة' },
-    { fieldName: 'businessInfo.backId', errorMessage: 'مطلوب هوية الخلفية' },
-    { fieldName: 'businessInfo.healthCertificate', errorMessage: 'مطلوب شهادة صحية' },
+    { fieldName: 'image', errorMessage: 'صيغة الملف المسموح بها هي صورة واحدة فقط.' },
+    { fieldName: 'name', errorMessage: 'الاسم مطلوب.' },
+    {
+        fieldName: 'answers',
+        errorMessage: 'الإجابات يجب أن تكون مصفوفة.',
+        subfields: {
+            title: 'عنوان الإجابة مطلوب.',
+            rate: 'معدل الإجابة يجب أن يكون رقمًا.'
+        }
+    },
+    { fieldName: 'title', errorMessage: 'العنوان مطلوب.' },
+    { fieldName: 'duration', errorMessage: 'المدة يجب أن تكون رقمًا.' },
+    { fieldName: 'description', errorMessage: 'الوصف مطلوب.' },
+    { fieldName: 'position', errorMessage: 'الموقف مطلوب.' },
+    { fieldName: 'gender', errorMessage: 'يجب أن يكون  صحيح.' },
+    { fieldName: 'birthDate', errorMessage: 'يجب أن يكون تاريخ الولادة تاريخًا صحيحًا.' },
+    { fieldName: 'primary_position', errorMessage: 'يجب أن يكون الموقف الأساسي سلسلة.' },
+    { fieldName: 'secondary_position', errorMessage: 'يجب أن يكون الموقف الثانوي سلسلة.' },
+    { fieldName: 'skills', errorMessage: 'يجب أن تكون المهارات مصفوفة وتحتوي على عنصر واحد على الأقل.' },
+
 ];
 
 

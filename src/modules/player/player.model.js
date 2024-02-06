@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const setting = require('../../config/schemaConfig');
 
+
 const playerSchema = new mongoose.Schema({
     logo: {
         type: String,
@@ -18,6 +19,10 @@ const playerSchema = new mongoose.Schema({
         trim: true,
         match: /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/,
     },
+    phone: {
+        type: String,
+        required: true,
+    },
     password: {
         type: String,
         required: true,
@@ -31,21 +36,17 @@ const playerSchema = new mongoose.Schema({
         type: Date,
         required: true,
     },
-    skills: {
-        primary_position: {
-            type: String,
-            default: 'Not specified',
-        },
-        secondary_position: {
-            type: String,
-            default: 'Not specified',
-        },
-        speed: String,
-        shooting: String,
-        defense: String,
-        physical: String,
-        skill: String
+    primary_position: {
+        type: String,
+        default: 'Not specified',
     },
+    secondary_position: {
+        type: String,
+        default: 'Not specified',
+    },
+    skills: [
+        String
+    ],
     role: {
         type: String,
         default: 'player',

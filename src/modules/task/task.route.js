@@ -4,13 +4,13 @@ const validateRequest = require('./../../middlewares/validateRequest')
 const taskSchema = require('./models/taskSchema')
 const addTask = require('./controllers/task/add_task')
 const getAllTasks = require('./controllers/task/getAllTasks')
-const addTask = require('./controllers/task/add_task')
 const deleteTask = require('./controllers/task/delete_task')
 const updateTask = require('./controllers/task/update_task');
 const addQuestion = require('./controllers/question/add_question')
 const deleteQuestion = require('./controllers/question/delete_question')
 const updateQuestion = require('./controllers/question/update_question');
 const questionSchema = require('./models/questionSchema');
+const getTaskQuestions = require('./controllers/question/get_task_questions');
 const taskRouter = express.Router();
 
 
@@ -25,6 +25,7 @@ taskRouter.route('/:id')
 
 
 taskRouter.route('/:id/questions')
+    .get(getTaskQuestions)
     .post(multerConfig().fields([{ name: 'image', maxCount: 1 }]), validateRequest(questionSchema), addQuestion);
 
 

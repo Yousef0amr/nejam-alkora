@@ -1,13 +1,14 @@
 const mongoose = require('mongoose');
+const setting = require('./../../config/schemaConfig')
 
-// Define the Task schema
+
 const taskSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
     },
     duration: {
-        type: Number,
+        type: String,
         required: true,
     },
     description: {
@@ -22,11 +23,26 @@ const taskSchema = new mongoose.Schema({
         type: String,
         default: ''
     },
-});
+},
+    setting);
 
+
+
+const answerShema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true,
+    },
+    rate: {
+        type: Number,
+        default: 0
+    }
+}, {
+    _id: false
+})
 
 const questionSchema = new mongoose.Schema({
-    taskId: {
+    task: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Task',
         required: true,
@@ -39,19 +55,9 @@ const questionSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    answers: [
-        {
-            title: {
-                type: String,
-                required: true,
-            },
-            rate: {
-                type: Number,
-                default: 0
-            }
-        },
-    ],
-});
+    answers: [answerShema],
+},
+    setting);
 
 
 const Task = mongoose.model('Task', taskSchema);

@@ -1,5 +1,5 @@
 const fileSchema = require('../../../common/validationsModel/file-schema')
-
+const Joi = require('joi')
 
 module.exports = Joi.object({
     image: fileSchema.max(1),

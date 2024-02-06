@@ -7,7 +7,6 @@ const validateRequest = require('../../middlewares/validateRequest');
 const loginSchema = require('../../common/validationsModel/login-schema')
 const verifyEmailSchema = require('../../common/validationsModel/verifyEmail-schema')
 const checkEmailSchema = require('../../common/validationsModel/checkEmail-schema');
-const validatorRegister = require('./validators/validator-register');
 const forgetPassword = require('./controllers/auth/forgetPassword');
 const { multerConfig } = require('../../utils/multer');
 const restPassword = require('./controllers/auth/restPassword');
@@ -16,6 +15,7 @@ const restPasswordSchema = require('../../common/validationsModel/restPassword')
 const changePasswordSchema = require('../../common/validationsModel/changePassword');
 const changePassword = require('./controllers/auth/changePassword');
 const playerShema = require('./models/playerSchema');
+const getPlayer = require('./controllers/get_player');
 const playerRouter = express.Router();
 
 
@@ -44,6 +44,11 @@ playerRouter.route('/change-password')
 
 playerRouter.route('/resend-code')
     .post(multerConfig().array(), validateRequest(checkEmailSchema), resendCode);
+
+
+
+playerRouter.route('/current-player')
+    .get(getPlayer);
 
 
 

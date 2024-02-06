@@ -5,10 +5,13 @@ const multerConfig = (fileType = 'image') => {
 
     const storage = multer.diskStorage({})
     const fileFilter = (req, file, next) => {
+
         if (file.mimetype.startsWith(fileType)) {
-            next(null, true)
+
+            return next(null, true)
         } else {
-            next(new ApiError(`Only ${fileType} allowed`, 400), false)
+            console.log(file)
+            return next(new ApiError(`Only ${fileType} allowed`, 400), false)
         }
     }
 

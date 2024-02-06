@@ -5,7 +5,8 @@ const { ApiError, Success } = require('./../../../../utils/apiResponse')
 
 const updateTask = wrap(
     async (req, res, next) => {
-        const value = { ...req.body, ...req.files }
+        const value = { ...req.body }
+
 
     }
 )

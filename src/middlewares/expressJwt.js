@@ -16,18 +16,19 @@ const checkUrl = (req, allowedRoutes) => {
 };
 
 const playerAllowedUrls = [
-    { method: 'GET', url: `${endpoints.PLAYER}/current-user` },
-    { method: 'PATCH', url: `${endpoints.PLAYER}/current-user` },
-    { method: 'DELETE', url: `${endpoints.PLAYER}/current-user` },
-    { method: 'POST', url: `${endpoints.USER}/change-password` },
-
+    { method: 'GET', url: `${endpoints.PLAYER}/current-player` },
+    { method: 'PATCH', url: `${endpoints.PLAYER}/current-player` },
+    { method: 'DELETE', url: `${endpoints.PLAYER}/current-player` },
+    { method: 'POST', url: `${endpoints.PLAYER}/change-password` },
+    { method: 'GET', url: `${endpoints.TASK}` },
+    { method: 'GET', url: `${endpoints.TASK}/:id/questions` },
 ]
 
 const coachAllowedUrls = [
-    { method: 'GET', url: `${endpoints.COACH}/current-user` },
-    { method: 'PATCH', url: `${endpoints.COACH}/current-user` },
-    { method: 'DELETE', url: `${endpoints.COACH}/current-user` },
-    { method: 'POST', url: `${endpoints.COACH}/change-password` },
+    { method: 'GET', url: `${endpoints.COACH}/current-coach` },
+    { method: 'PATCH', url: `${endpoints.COACH}/current-coach` },
+    { method: 'DELETE', url: `${endpoints.COACH}/current-coach` },
+    { method: 'POST', url: `${endpoints.COACH}/change-coach` },
 ]
 
 const isRevoked = wrap(async (req, token) => {

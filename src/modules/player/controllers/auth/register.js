@@ -9,19 +9,20 @@ const uploadMedia = require('./../../../../utils/uploadMedia')
 const register = wrap(
     async (req, res, next) => {
         const value = { ...req.body }
-
+        const files = req.files
         const isPlayerExist = await checkEmailDB(Player, value.email)
         if (isPlayerExist) {
             return next(new ApiError("Email is already registered", 400));
         }
+
+        value.logo = await uploadMedia(files.logo[0].path, 'negamAlkora/players/logo')
+        value.password = await hashPassword(value.password)
+
         const player = new Player({
             ...value
         });
-        value.logo = await uploadMedia(req.files.logo[0], 'negam-alkor/players/logo')
 
-        value.password = await hashPassword(value.password)
         await player.save();
-
         const payload = { id: player._id, role: player.role };
         const token = await generateToken(payload, process.env.ACCESS_TOKEN_SECRET);
 

@@ -1,7 +1,7 @@
 {
-  "name": "leap-tech-backend",
+  "name": "nejam-alkora-backend",
   "version": "1.0.0",
-  "description": "leap tech app backend",
+  "description": "nejam alkora app backend",
   "main": "index.js",
   "scripts": {
     "start:dev": "nodemon index.js",

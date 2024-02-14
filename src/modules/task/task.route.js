@@ -10,7 +10,9 @@ const addQuestion = require('./controllers/question/add_question')
 const deleteQuestion = require('./controllers/question/delete_question')
 const updateQuestion = require('./controllers/question/update_question');
 const questionSchema = require('./models/questionSchema');
-const getTaskQuestions = require('./controllers/question/get_task_questions');
+const getTask = require('./controllers/task/getTask');
+const getPassedTasks = require('./controllers/task/getPassedTasks');
+const addPassedTasks = require('./controllers/task/add_passed_task');
 const taskRouter = express.Router();
 
 
@@ -19,13 +21,17 @@ taskRouter.route('/')
     .post(multerConfig().fields([{ name: 'image', maxCount: 1 }]), validateRequest(taskSchema), addTask)
     .get(getAllTasks)
 
+taskRouter.route('/passed-tasks')
+    .get(getPassedTasks)
+    .post(multerConfig().array(''), addPassedTasks)
+
 taskRouter.route('/:id')
+    .get(getTask)
     .delete(deleteTask)
     .patch(updateTask);
 
 
 taskRouter.route('/:id/questions')
-    .get(getTaskQuestions)
     .post(multerConfig().fields([{ name: 'image', maxCount: 1 }]), validateRequest(questionSchema), addQuestion);
 
 

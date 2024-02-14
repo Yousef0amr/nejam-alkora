@@ -26,7 +26,11 @@ const taskSchema = new mongoose.Schema({
 },
     setting);
 
-
+taskSchema.virtual('questions', {
+    ref: 'Question',
+    localField: '_id',
+    foreignField: 'task'
+})
 
 const answerShema = new mongoose.Schema({
     title: {
@@ -37,9 +41,8 @@ const answerShema = new mongoose.Schema({
         type: Number,
         default: 0
     }
-}, {
-    _id: false
-})
+},
+    setting)
 
 const questionSchema = new mongoose.Schema({
     task: {
@@ -59,13 +62,35 @@ const questionSchema = new mongoose.Schema({
 },
     setting);
 
+const passedTaskSchema = new mongoose.Schema({
+    task: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Task',
+        required: true,
+    },
+    player: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Player',
+        required: true,
+    },
+    degree: {
+        type: String,
+        required: true,
+    },
+},
+    setting);
+
+
 
 const Task = mongoose.model('Task', taskSchema);
 
 const Question = mongoose.model('Question', questionSchema);
 
+const PassedTask = mongoose.model('PassedTask', passedTaskSchema);
+
 
 module.exports = {
     Task,
-    Question
+    Question,
+    PassedTask
 };

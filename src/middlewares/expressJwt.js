@@ -21,7 +21,9 @@ const playerAllowedUrls = [
     { method: 'DELETE', url: `${endpoints.PLAYER}/current-player` },
     { method: 'POST', url: `${endpoints.PLAYER}/change-password` },
     { method: 'GET', url: `${endpoints.TASK}` },
-    { method: 'GET', url: `${endpoints.TASK}/:id/questions` },
+    { method: 'GET', url: `${endpoints.TASK}/:id` },
+    { method: 'GET', url: `${endpoints.TASK}/passed-tasks` },
+    { method: 'POST', url: `${endpoints.TASK}/passed-tasks` },
 ]
 
 const coachAllowedUrls = [

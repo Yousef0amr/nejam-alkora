@@ -7,19 +7,21 @@ const { Success, ApiError } = require("../../../../utils/apiResponse")
 const addPassedTasks = wrap(
     async (req, res, next) => {
         const player = await Player.findById(req.userId)
-        const isPassed = await PassedTask.findById(req.body.id);
-        if (isPassed) {
-            return next(new ApiError('Task already passed', 400))
-        }
-        const task = new PassedTask(
-            {
-                degree: req.body.degree,
-                task: req.body.id,
-                player: player.id
-            }
-        )
+        const id = req.body.id
+        const task = await PassedTask.findById(id);
 
-        await task.save();
+        if (task) {
+            task.degree = req.body.degree
+        } else {
+            const newTask = new PassedTask(
+                {
+                    degree: req.body.degree,
+                    task: id,
+                    player: player.id
+                }
+            )
+            await newTask.save();
+        }
 
         return Success(res, 'OK', null)
     }

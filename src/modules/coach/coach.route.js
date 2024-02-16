@@ -34,7 +34,7 @@ coachRouter.route('/verify-email')
 coachRouter.route('/forget-password')
     .post(multerConfig().array(), validateRequest(checkEmailSchema), forgetPassword);
 
-coachRouter.route('/rest-password')
+coachRouter.route('/reset-password')
     .post(multerConfig().array(), validateRequest(restPasswordSchema), restPassword);
 
 

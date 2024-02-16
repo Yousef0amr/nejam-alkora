@@ -3,7 +3,6 @@ const { PassedTask } = require('./../../task.model')
 const Player = require('./../../../player/player.model')
 const { Success } = require("../../../../utils/apiResponse")
 
-
 const getPassedTasks = wrap(
     async (req, res, next) => {
         const player = await Player.findById(req.userId)

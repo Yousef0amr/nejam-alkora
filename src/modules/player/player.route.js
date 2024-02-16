@@ -35,7 +35,7 @@ playerRouter.route('/verify-email')
 playerRouter.route('/forget-password')
     .post(multerConfig().array(), validateRequest(checkEmailSchema), forgetPassword);
 
-playerRouter.route('/rest-password')
+playerRouter.route('/reset-password')
     .post(multerConfig().array(), validateRequest(restPasswordSchema), restPassword);
 
 

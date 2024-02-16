@@ -10,7 +10,7 @@ const getTask = wrap(
         const tasks = await Task.findOne({}, { createdAt: false }).populate([{
             path: 'questions'
         }])
-        console.log(tasks)
+
         return Success(res, 'OK', { tasks })
     }
 )

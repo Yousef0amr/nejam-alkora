@@ -10,17 +10,19 @@ const addPassedTasks = wrap(
         const id = req.body.id
         const task = await PassedTask.findById(id);
 
+        console.log(task)
         if (task) {
             task.degree = req.body.degree
+            await task.save();
         } else {
-            const newTask = new PassedTask(
+            const task = new PassedTask(
                 {
                     degree: req.body.degree,
                     task: id,
                     player: player.id
                 }
             )
-            await newTask.save();
+            await task.save();
         }
 
         return Success(res, 'OK', null)
